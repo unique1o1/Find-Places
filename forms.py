@@ -13,3 +13,11 @@ class SignupForm(Form):
     password = PasswordField('Password', validators=[DataRequired(
         "Please enter a password."), Length(min=6, message="Passwords must be 6 characters or more.")])
     submit = SubmitField('Sign up')
+
+
+class LoginForm(Form):
+    email = StringField("Email", validators=[DataRequired(
+        "please put your email"), Email("please enter your valid email")])
+    password = PasswordField("Password", validators=[DataRequired(
+        "enter your password"), Length(min=6, message="password must have at least 6 letter")])
+    submit = SubmitField("Login")
