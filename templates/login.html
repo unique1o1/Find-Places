@@ -10,11 +10,24 @@
 
         <div class="form-group">
           {{ form.email.label }}
+
+
+          {% if form.email.errors %}
+          {% for err in form.email.errors %}
+            <p class="error-message">{{ err }}</p>
+          {% endfor %}
+          {% elif error %}
+          <p class="error-message">{{ error }}</p>
+        {% endif %}
+        
           {{ form.email }}
         </div>
 
         <div class="form-group">
           {{ form.password.label }}
+          {% if pass_error%}
+          <p class="error-message">{{ pass_error }}</p>
+          {% endif%}
           {{ form.password }}
         </div>
 
