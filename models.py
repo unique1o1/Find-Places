@@ -41,7 +41,7 @@ class Places():
         return int(meters / 80)
 
     def query(self, address):
-        address = address + ' '
+        address = address.replace(' ', '') + ' '
         lat, lng = self.address2geo(address)
 
         query_url = 'https://en.wikipedia.org/w/api.php?action=query&list=geosearch&gsradius=5000&gscoord={0}%7C{1}&gslimit=20&format=json'.format(

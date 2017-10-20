@@ -23,7 +23,7 @@
             <div class="form-group">
              
 
-              {{ form.address(placeholder="Explore nearby") }}
+              {{ form.address(placeholder="Explore nearby",pattern="[\w]* ?[\w]*") }}
             </div>
             
             {{ form.submit(class="btn-primary") }}
@@ -45,9 +45,9 @@
     ];
 
     var map = L.map('map').setView([{{ my_coordinates[0] }}, {{ my_coordinates[1] }}], 15);
-    mapLink = "<a href="http://openstreetmap.org">OpenStreetMap</a>";
+   mapLink="<a href='openstreetmap.org'> OpenStreetMap </a>";
     L.tileLayer(
-      'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
         attribution: '&copy; ' + mapLink + ' Contributors',
         maxZoom: 18,
       }
