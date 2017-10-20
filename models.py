@@ -30,6 +30,7 @@ class User(db.Model):
 
 class Places():
     def address2geo(self, address):
+        address = address.replace(' ', '')
         loc = geocoder.google(address)
         return (loc.lat, loc.lng)
 

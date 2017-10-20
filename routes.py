@@ -4,16 +4,16 @@ from forms import SignupForm, LoginForm, AddressForm
 import os
 app = Flask(__name__)
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:0@localhost:5432/learningflask'
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# app.secret_key = "thisisyunik"
-# db.init_app(app)
-
-
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:0@localhost:5432/learningflask'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = "thisisyunik"
 db.init_app(app)
+
+
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# app.secret_key = "thisisyunik"
+# db.init_app(app)
 
 
 @app.route("/")
@@ -96,8 +96,9 @@ def home():
     places = []
     geoloc = (27.6630, 85.277)
     if request.method == 'POST':
-        address = form.address.data
         place = Places()
+        address = form.address.data
+
         geoloc = place.address2geo(address)
         places = place.query(address)
         return render_template('home.html', form=form, my_coordinates=geoloc, places=places)
