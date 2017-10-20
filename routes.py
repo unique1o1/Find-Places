@@ -1,19 +1,19 @@
 from flask import Flask, render_template, request, session, redirect, url_for
-from models import db, User
-from forms import SignupForm, LoginForm
+from models import db, User, Places
+from forms import SignupForm, LoginForm, AddressForm
 import os
 app = Flask(__name__)
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:0@localhost:5432/learningflask'
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# app.secret_key = "thisisyunik"
-# db.init_app(app)
-
-
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:0@localhost:5432/learningflask'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = "thisisyunik"
 db.init_app(app)
+
+
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# app.secret_key = "thisisyunik"
+# db.init_app(app)
 
 
 @app.route("/")
@@ -91,7 +91,18 @@ def logout():
 def home():
     if 'email' not in session:
         return redirect(url_for('login'))
-    return render_template("home.html")
+
+    form = AddressForm()
+    places = []
+    geoloc = (27.6630, 85.277)
+    if request.method == 'POST':
+        address = form.address.data
+        place = Places()
+        geoloc = place.address2geo(address)
+        places = place.query(address)
+        return render_template('home.html', form=form, my_coordinates=geoloc, places=places)
+
+    return render_template("home.html", form=form, my_coordinates=geoloc, places=places)
 
 
 if __name__ == "__main__":

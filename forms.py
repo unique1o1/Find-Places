@@ -21,3 +21,10 @@ class LoginForm(Form):
     password = PasswordField("Password", validators=[DataRequired(
         "enter your password"), Length(min=6, message="password must have at least 6 letter")])
     submit = SubmitField("Login")
+
+
+class AddressForm(Form):
+    address = StringField('Address', validators=[
+        DataRequired("Please enter an address.")])
+
+    submit = SubmitField("Search")
