@@ -16,7 +16,11 @@
 
 
       <script>
-          
+          var myname=[
+          {% for place in places %}
+          "{{ place['name'] }}",
+          {% endfor %} 
+          ];
           var myplaces=[
             {% for place in places %}
             {lat: {{ place['lat']}} , lng: {{ place['lng']}} }, 
@@ -37,7 +41,9 @@
         
                   var marker = new google.maps.Marker({
                       position: myplaces[i],
-                      map: map
+                      map: map,
+                      title:myname[i]
+                    
                   });
               }//end of for loop
               }
