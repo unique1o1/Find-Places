@@ -1,6 +1,6 @@
 #map {
 	height: 100%;
-  margin-left: 337px;
+  margin-left: 27%;
 
 }
 
@@ -75,11 +75,11 @@ float: right;
 
 .sidebar {
   position: fixed;
-  width: 27%;
+  width: 25%;
   height: 100vh;
   background: rgb(29, 124, 155);
   font-size: 0.65em;
-  box-shadow: 10px 0px 20px #454545;
+  box-shadow: 7px 0px 20px #414141b3;
   z-index: 1;
 }
 
@@ -150,7 +150,7 @@ float: right;
   form {
     box-sizing: border-box;
     width: 260px;
-    margin: 100px auto 0;
+    margin: 10px auto 0;
    
     padding-bottom: 40px;
     border-radius: 3px;
