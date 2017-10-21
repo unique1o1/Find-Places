@@ -26,10 +26,11 @@ html, body {
     letter-spacing: 0.3px;
     padding: 12px 32px;
     text-align: center;
-    margin-left: 50px;
+    margin-left: 56px;
     text-decoration: none;
     text-transform: uppercase;
     border-radius: 7px;
+    box-shadow: 1px 3px 8px #212223CC;
   }
 
   
@@ -76,9 +77,10 @@ float: right;
   position: fixed;
   width: 27%;
   height: 100vh;
-  background: rgb(0, 100, 136);
+  background: rgb(29, 124, 155);
   font-size: 0.65em;
-  box-shadow: 20px 0px 5px #888888;
+  box-shadow: 10px 0px 20px #454545;
+  z-index: 1;
 }
 
 .nav {
@@ -104,7 +106,7 @@ float: right;
   text-transform: uppercase;
   text-decoration: none;
   letter-spacing: 0.4em;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(0, 0, 0, 0.35);
   display: block;
   font-size: 17px;
 }
@@ -137,11 +139,11 @@ float: right;
 
 
 
-h1, input::-webkit-input-placeholder, button {
+/* h1, input::-webkit-input-placeholder, button {
     font-family: 'roboto', sans-serif;
     -webkit-transition: all 0.3s ease-in-out;
             transition: all 0.3s ease-in-out;
-  }
+  } */
   
 
   
@@ -157,21 +159,7 @@ h1, input::-webkit-input-placeholder, button {
     box-sizing: border-box;
     padding: 20px;
   }
-::-moz-placeholder{
-      color:black;
-  }
-::-webkit-input-placeholder{
-    color:black;
-  }
-input::-moz-placeholder{
-    color:black;
-}
-input::placeholder {
-    color: black;
-  }
-input::-webkit-input-placeholder{
-  color:black;
-}
+
 
 .btn {
     position: relative;
@@ -197,11 +185,11 @@ input::-webkit-input-placeholder{
     background-color: #27ae60;
   }
   
-
+  
   .shit {
     margin: 40px 45px;
     width: 150px;
-    display: block;
+ 
     border: none;
     text-align: center;
     padding: 10px 0;
@@ -217,10 +205,12 @@ input::-webkit-input-placeholder{
     color: #000000;
   }
   input:focus, input:valid {
-    box-shadow: none;
+    
     outline: none;
     background-position: 0 0;
   }
+
+  
   input:focus::-webkit-input-placeholder, input:valid::-webkit-input-placeholder {
     color: #1abc9c;
     font-size: 11px;
@@ -258,7 +248,7 @@ input::-webkit-input-placeholder{
   }
   
   .section-tabs article .walking-distance {
-    color: #6e6e6e;
+    color: #000000;
     font-size: 13px;
     margin: 0;
   }

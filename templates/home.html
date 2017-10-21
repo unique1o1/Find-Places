@@ -8,11 +8,11 @@
       </head>
 
     <body>
-      <a href="{{ url_for('logout') }}">
+      <!-- <a href="{{ url_for('logout') }}">
         <button class="btns">
             Logout
           </button>
-        </a>
+        </a> -->
     {% include 'sidebar.html' %}
    
       <div id="map"></div>
@@ -24,7 +24,7 @@
       <script>
           var myname=[
           {% for place in places %}
-          ["{{ place['name'] }}","<h3><a href='{{ place['url'] }}' target='_blank'>{{ place['name'] }}</a></h3> <p>{{ place['time'] }} min away</p>"],
+          ["{{ place['name'] }}","<h3><a href='{{ place['url'] }}' target='_blank'>{{ place['name'] }}</a></h3> <p id='away'>{{ place['time'] }} min away</p>"],
           {% endfor %} 
           ];
           var myplaces=[
@@ -35,8 +35,7 @@
           infowindow = new google.maps.InfoWindow({
           content: contentString
         });
-
-        
+          
               function initMap() {
                 var uluru = {lat: {{ my_coordinates[0] }}, lng:{{ my_coordinates[1] }}};
                 
