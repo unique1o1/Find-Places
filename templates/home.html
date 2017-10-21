@@ -4,11 +4,17 @@
         <meta name=viewport content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">  
-        <link href='http://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
+        <link href="http://fonts.googleapis.com/css?family=Roboto:400" rel="stylesheet" type="text/css">
       </head>
 
     <body>
+      <a href="{{ url_for('logout') }}">
+        <button class="btns">
+            Logout
+          </button>
+        </a>
     {% include 'sidebar.html' %}
+   
       <div id="map"></div>
    
 
@@ -18,7 +24,7 @@
       <script>
           var myname=[
           {% for place in places %}
-          "{{ place['name'] }}",
+          ["{{ place['name'] }}","<h3><a href='{{ place['url'] }}' target='_blank'>{{ place['name'] }}</a></h3> <p>{{ place['time'] }} min away</p>"],
           {% endfor %} 
           ];
           var myplaces=[
@@ -26,9 +32,11 @@
             {lat: {{ place['lat']}} , lng: {{ place['lng']}} }, 
             {% endfor %} 
           ];
-          for (var i = 0; i < myplaces.length; i++) {
-            console.log(myplaces[i]);
-          }
+          infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+
+        
               function initMap() {
                 var uluru = {lat: {{ my_coordinates[0] }}, lng:{{ my_coordinates[1] }}};
                 
@@ -38,14 +46,23 @@
                 });
                 // var marker;
                 for (var i = 0; i < myplaces.length; i++) {
-        
-                  var marker = new google.maps.Marker({
+                  let infowindow = new google.maps.InfoWindow({
+          content: myname[i][1]
+        });
+
+                  let marker = new google.maps.Marker({
                       position: myplaces[i],
                       map: map,
-                      title:myname[i]
+                      title:myname[i][0]
+
+                        
                     
                   });
+                  marker.addListener('click',function(){
+                          infowindow.open(map,marker);
+                        })
               }//end of for loop
+          
               }
         </script>
         

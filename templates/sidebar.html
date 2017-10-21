@@ -17,7 +17,8 @@
 <div class="section-tabs">
         <div class="places">
           {% for place in places %}
-            <article>
+            <article id="results" class="scrollbar">
+           
               <a class="name" href="{{ place['url'] }}" target="_blank">{{ place['name'] }}</a>
               <p class="walking-distance">{{ place['time'] }} min away</p>
             </article>
