@@ -4,7 +4,7 @@
         <meta name=viewport content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">  
-        <link href="http://fonts.googleapis.com/css?family=Roboto:400" rel="stylesheet" type="text/css">
+        
       </head>
 
     <body>
@@ -19,56 +19,97 @@
    
 
 
-
-
+     
       <script>
+
+          function initMap() {
+
           var myname=[
           {% for place in places %}
           ["{{ place['name'] }}","<h3><a href='{{ place['url'] }}' target='_blank'>{{ place['name'] }}</a></h3> <p id='away'>{{ place['time'] }} min away</p>"],
           {% endfor %} 
           ];
-          var myplaces=[
-            {% for place in places %}
-            {lat: {{ place['lat']}} , lng: {{ place['lng']}} }, 
+
+         var loc=[
+          {% for place in places %}
+          [ {{ place['lat'] }},{{ place['lng'] }} ],
             {% endfor %} 
           ];
-          infowindow = new google.maps.InfoWindow({
-          content: contentString
-        });
-          
-              function initMap() {
-                var uluru = {lat: {{ my_coordinates[0] }}, lng:{{ my_coordinates[1] }}};
-                
-                var map = new google.maps.Map(document.getElementById('map'), {
-                  zoom: 15,
-                  center: uluru
-                });
-                // var marker;
-                for (var i = 0; i < myplaces.length; i++) {
-                  let infowindow = new google.maps.InfoWindow({
-          content: myname[i][1]
-        });
+        var temp=[];
+        for(i =0; i< loc.length; i++){
+            loct={lat:loc[i][0],lng:loc[i][1]}
+            temp.push(loct);
+        }
 
-                  let marker = new google.maps.Marker({
-                      position: myplaces[i],
-                      map: map,
-                      title:myname[i][0]
+        {% if my_coordinates %}
+        var example= false;
+        var searched_loc={
+          lat: parseFloat("{{ my_coordinates[0] }}"),
+          lng: parseFloat("{{ my_coordinates[1] }}")
+        };
+        {% else %}
+        var example= true;
+        {% endif %}
 
-                        
-                    
-                  });
-                  marker.addListener('click',function(){
-                          infowindow.open(map,marker);
-                        })
-              }//end of for loop
-          
-              }
-        </script>
+
         
-            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWb4diQbFeukhsSchcZvCrP7uV4FNuXXQ&callback=initMap">
+        if (example) {
+          
+        console.log(example);
+        if(navigator.geolocation){
+          navigator.geolocation.getCurrentPosition(function(position) {
+            console.log(example);
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            console.log(pos);
+            mapMaker(pos);
+          })}
+          else{ 
+            var pos = {
+            lat: 36.7783,
+            lng: 119.4179
+          };
+            mapMaker(pos)
+          }
+
+        }//if 
+        else {
+          mapMaker(searched_loc);
+        }
+ 
+        function mapMaker(location){
+          console.log(location);
+           var map = new google.maps.Map(document.getElementById('map'), {
+               zoom: 15,
+               center: {lat:location.lat,lng:location.lng}
+             });
+             // var marker;
+             for (var i = 0; i < temp.length; i++) {
+         let infowindow = new google.maps.InfoWindow({
+         content: myname[i][1]
+         });
+         
+         let marker = new google.maps.Marker({
+                   position: temp[i],
+                   map: map,
+                   title:myname[i][0]     
+               });
+               marker.addListener('click',function(){
+                       infowindow.open(map,marker);
+                     })
+           }//end of for loop
+         
+       
+         }
+      }
+              
+    </script>
+      
             
-            </script>
-        
+              <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWb4diQbFeukhsSchcZvCrP7uV4FNuXXQ&callback=initMap">
+              </script>
         
     </body>
     </html>

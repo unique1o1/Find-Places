@@ -94,16 +94,16 @@ def home():
 
     form = AddressForm()
     places = []
-    geoloc = (27.6630, 85.277)
+    geoloc = []
     if request.method == 'POST':
         place = Places()
         address = form.address.data
 
         geoloc = place.address2geo(address)
         places = place.query(address)
-        return render_template('home.html', form=form, my_coordinates=geoloc, places=places)
+        return render_template('home.html', form=form, places=places, my_coordinates=geoloc)
 
-    return render_template("home.html", form=form, my_coordinates=geoloc, places=places)
+    return render_template("home.html", form=form, places=places, my_coordinates=geoloc)
 
 
 if __name__ == "__main__":
