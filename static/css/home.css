@@ -161,6 +161,7 @@ html {
  
     border: none;
     text-align: center;
+    font-size: 17px;
     padding: 10px 0;
     border-bottom: solid 2px #6403ff;
     -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
@@ -202,20 +203,23 @@ html {
     padding-right: 10px;
   }
   
-  .section-tabs .places a,
-  .section-tabs .places a:visited {
-    color: #ffffff; 
+  .section-tabs .places a{
+    color: white;
+  }
+  .section-tabs .places a:hover {
+    color: #074fbb; 
   }
   
   
   .section-tabs article {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   
   .section-tabs article .name {
-    font-size: 18px;
-  }
+    font-size: 17px;
   
+  }
+ 
   .section-tabs article .walking-distance {
     color: #000000;
     font-size: 13px;

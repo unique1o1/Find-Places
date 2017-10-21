@@ -19,7 +19,7 @@
       {% for place in places %}
       <article id="results" class="scrollbar">
 
-        <a class="name" href="{{ place['url'] }}" target="_blank">{{ place['name'] }}</a>
+        <a class="name" style="text-decoration:none;" href="{{ place['url'] }}" target="_blank">{{ place['name'] }}</a>
         <p class="walking-distance">{{ place['time'] }} min away</p>
       </article>
       {% endfor %}
