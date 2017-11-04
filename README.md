@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Learning Flask
 
 This is a sample application for the Learning Flask course by Packt Publishing. Check out the [live app here](http://tranquil-ridge-5048.herokuapp.com/).
@@ -20,3 +21,7 @@ $ python routes.py
 ## Deploying the app
 
 To deploy your Flask app to Heroku, [check out this guide](https://github.com/lpolepeddi/learning-flask/wiki/Deploying-Flask-to-Heroku)
+=======
+# Find-Places
+Find popular places from your search criteria.
+>>>>>>> 9f3374a3ea8eef5d236e871953a747f3cbbd562f
