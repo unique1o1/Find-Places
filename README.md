@@ -1,7 +1,7 @@
 This Project is live on [Find-Places](http://find-places.herokuapp.com)
 
 
-## Cloning the repo
+## Cloning the Repo
 
 First clone this repo by running
 
