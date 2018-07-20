@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, session, redirect, url_for, jsonify
 from models import db, User, Places, Token
+
+from sendNoti import send_push_message
 from forms import SignupForm, LoginForm, AddressForm
 import os
 app = Flask(__name__)
