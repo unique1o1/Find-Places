@@ -32,6 +32,9 @@ def notification():
     if request.method == "POST":
         token = request.get_json()
         print(token['token'])
+        obj = Token(tokenID=token['token'])
+        db.session.add(obj)
+        db.session.commit()
         return jsonify(sucess=True)
     return render_template("notification.html")
 
