@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for, jsonify
 from models import db, User, Places
 from forms import SignupForm, LoginForm, AddressForm
 import os
@@ -24,6 +24,21 @@ def index():
 @app.route("/about")
 def about():
     return render_template("about.html")
+
+
+@app.route("/notification", methods=['GET', 'POST'])
+def notification():
+
+    if request.method == "POST":
+
+        return render_template("about.html")
+    return render_template("notification.html")
+
+
+@app.route("/api/notification", methods=['GET'])
+def notificationAPI():
+
+    return jsonify(message=request.args.msg, token=request.args.token)
 
 
 @app.route("/signup", methods=["GET", "POST"])

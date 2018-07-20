@@ -28,6 +28,12 @@ class User(db.Model):
         return check_password_hash(self.pwdhash, password)
 
 
+class Token(db.Model):
+    __tablename__ = "token"
+    uid = db.Column(db.Integer, primary_key=True)
+    tokenID = db.Column(db.String(100))
+
+
 class Places():
     def address2geo(self, address):
         address = address.replace(' ', '')
