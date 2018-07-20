@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, session, redirect, url_for, jsonify
-from models import db, User, Places
+from models import db, User, Places, Token
 from forms import SignupForm, LoginForm, AddressForm
 import os
 app = Flask(__name__)
@@ -30,8 +30,9 @@ def about():
 def notification():
 
     if request.method == "POST":
-
-        return render_template("about.html")
+        token = request.get_json()
+        print(token['token'])
+        return jsonify(sucess=True)
     return render_template("notification.html")
 
 
