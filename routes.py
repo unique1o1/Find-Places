@@ -15,7 +15,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = "thisisyunik"
 db.init_app(app)
 
-
+db.create_all()
 @app.route("/")
 def index():
     return render_template("index.html")
