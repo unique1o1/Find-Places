@@ -45,7 +45,7 @@ def notification():
 
 @app.route("/api/notification", methods=['GET'])
 def notificationAPI():
-
+    send_push_message(request.args['token'], request.args['msg'])
     return jsonify(message=request.args['msg'], token=request.args['token'])
 
 
