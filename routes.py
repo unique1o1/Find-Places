@@ -15,7 +15,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = "thisisyunik"
 db.init_app(app)
 
-db.create_all()
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -31,6 +31,8 @@ def notification():
 
     if request.method == "POST":
         token = request.get_json()
+
+        db.create_all()
         print(token['token'])
         obj = Token(tokenID=token['token'])
         db.session.add(obj)
