@@ -11,7 +11,7 @@ geocoder==1.32.1
 gunicorn==19.7.1
 idna==2.6
 itsdangerous==0.24
-Jinja2==2.9.6
+Jinja2==2.11.3
 MarkupSafe==1.0
 pipreqs==0.4.9
 psycopg2==2.7.3.1
